@@ -56,10 +56,14 @@ function formatScopes(scopes) {
   return scopes.join(" > ");
 }
 
-function tokenizeCase(grammar, line) {
+// Lines tokenized before the case line. The default skips past the two-line
+// file-opening heading; a case can override it to test document-start behavior.
+const defaultPreamble = ["! preamble", "! preamble"];
+
+function tokenizeCase(grammar, line, preamble = defaultPreamble) {
   let ruleStack = null;
 
-  for (const preambleLine of ["! preamble", "! preamble"]) {
+  for (const preambleLine of preamble) {
     const result = grammar.tokenizeLine(preambleLine, ruleStack);
     ruleStack = result.ruleStack;
   }
@@ -77,8 +81,8 @@ async function main() {
   }
 
   for (const testCase of testCases) {
-    const { line, expectations } = testCase;
-    const { tokens } = tokenizeCase(grammar, line);
+    const { line, expectations, preamble } = testCase;
+    const { tokens } = tokenizeCase(grammar, line, preamble);
 
     for (const expectation of expectations) {
       const { text, scopeIncludes } = expectation;

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0
+
+- The first two lines of a file (banner + title line) are now both highlighted as headings; previously only the first line was, leaving numbers like `15` in `IEA 15 MW ...` picked out on line 2
+- Section banners with a trailing note, e.g. `---- FLOATING PLATFORM ---- [unused with WaveMod=6]`, are now recognized as headings
+- Free text after an inline `!` is highlighted as a comment again (it had been left unstyled since 0.0.7), while parameter names inside `! Name - description` keep their own color
+- The remark after `END` (e.g. `END of input file (the word "END" must appear ...)`) is now a comment instead of being tokenized as strings and numbers
+- En dash (`–`) is accepted as a description separator, as used in SeaState files
+- Unquoted string values such as `FATAL`, `ALL`, `RANLUX`, `RK4`, and `AF05_BL.txt` are highlighted as strings
+- Table headers now allow `*` in column names (MoorDyn `CG*`, `I*`, `CdA*`) and may be followed by a `!` remark or a `[...]` note
+- OpenFAST/MoorDyn output preambles (`Predictions were generated ...`, `linked with ...`, `These predictions were generated ...`) are highlighted as headings
+- An unterminated `"` no longer spills string highlighting onto following lines
+- Added 16 grammar regression cases covering the fixes above
+- Added `bugs`/`homepage` links to the manifest and stopped shipping `.gitignore` inside the VSIX
+
 ## 0.0.9
 
 - Added a lightweight grammar regression test suite for representative OpenFAST, ROSCO, MoorDyn, and linearization patterns

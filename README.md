@@ -11,9 +11,10 @@ Unofficial VS Code extension for OpenFAST, ROSCO, and TurbSim input and output f
 - Support for ROSCO-style `DISCON.in` controller files
 - Support for TurbSim input files (`.inp`, and `.in`)
 - Highlighting for:
-  - section banners and `END` markers
+  - file title lines, section banners, and `END` markers
   - booleans and special values like `default`, `unused`, and `none`
-  - quoted strings and file paths
+  - quoted strings, file paths, and unquoted string values like `FATAL` or `RK4`
+  - table column headers and units rows
   - integers, decimals, and scientific notation
   - parameter names in the common `value  parameter  - description` layout
   - `!` comments and trailing inline descriptions

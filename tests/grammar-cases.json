@@ -178,5 +178,221 @@
         "scopeIncludes": "comment.line.description.openfast"
       }
     ]
+  },
+  {
+    "preamble": [
+      "------- HydroDyn v2.03.* Input File --------------------"
+    ],
+    "line": "IEA 15 MW offshore reference model on UMaine VolturnUS-S",
+    "expectations": [
+      {
+        "text": "IEA 15 MW offshore reference model on UMaine VolturnUS-S",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "preamble": [
+      "------- HydroDyn v2.03.* Input File --------------------",
+      "IEA 15 MW offshore reference model"
+    ],
+    "line": "False            Echo           - Echo the input file data (flag)",
+    "expectations": [
+      {
+        "text": "False",
+        "scopeIncludes": "constant.language.boolean.openfast"
+      },
+      {
+        "text": "Echo",
+        "scopeIncludes": "variable.parameter.openfast"
+      }
+    ]
+  },
+  {
+    "line": "---------------------- FLOATING PLATFORM --------------------------------------- [unused with WaveMod=6]",
+    "expectations": [
+      {
+        "text": "[unused with WaveMod=6]",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": "END of input file (the word \"END\" must appear in the first 3 columns of this last OutList line)",
+    "expectations": [
+      {
+        "text": "END",
+        "scopeIncludes": "keyword.control.end.openfast"
+      },
+      {
+        "text": "of input file (the word",
+        "scopeIncludes": "comment.line.end-remark.openfast"
+      },
+      {
+        "text": "3",
+        "scopeIncludes": "comment.line.end-remark.openfast"
+      }
+    ]
+  },
+  {
+    "line": "5                X_HalfWidth    – Half-width of the domain in the X direction (m) [>0]",
+    "expectations": [
+      {
+        "text": "X_HalfWidth",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "– Half-width of the domain",
+        "scopeIncludes": "comment.line.description.openfast"
+      },
+      {
+        "text": "[>0]",
+        "scopeIncludes": "meta.brackets.options.openfast"
+      }
+    ]
+  },
+  {
+    "line": "\"FATAL\"          AbortLevel      - Error level when simulation should abort (string)",
+    "expectations": [
+      {
+        "text": "AbortLevel",
+        "scopeIncludes": "variable.parameter.openfast"
+      }
+    ]
+  },
+  {
+    "line": "FATAL                  AbortLevel      - Error level when simulation should abort (string)",
+    "expectations": [
+      {
+        "text": "FATAL",
+        "scopeIncludes": "string.unquoted.value.openfast"
+      },
+      {
+        "text": "AbortLevel",
+        "scopeIncludes": "variable.parameter.openfast"
+      }
+    ]
+  },
+  {
+    "line": "RANLUX           WaveSeed(2)    - Second random seed of incident waves",
+    "expectations": [
+      {
+        "text": "RANLUX",
+        "scopeIncludes": "string.unquoted.value.openfast"
+      },
+      {
+        "text": "WaveSeed(2)",
+        "scopeIncludes": "variable.parameter.openfast"
+      }
+    ]
+  },
+  {
+    "line": "AF05_BL.txt      BL_file         ! The file name including the boundary layer characteristics",
+    "expectations": [
+      {
+        "text": "AF05_BL.txt",
+        "scopeIncludes": "string.unquoted.value.openfast"
+      },
+      {
+        "text": "BL_file",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "The file name",
+        "scopeIncludes": "comment.line.bang.openfast"
+      }
+    ]
+  },
+  {
+    "line": "TwrElev        TwrDiam        TwrCd         TwrTI      TwrCa  !TwrTI used only with TwrShadow=2",
+    "expectations": [
+      {
+        "text": "TwrElev",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "TwrCa",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "!",
+        "scopeIncludes": "punctuation.definition.comment.openfast"
+      },
+      {
+        "text": "used only with",
+        "scopeIncludes": "comment.line.bang.openfast"
+      }
+    ]
+  },
+  {
+    "line": "  JointID     Jointxi     Jointyi     Jointzi    JointAxID  JointOvrlp    [JointOvrlp= 0: do nothing at joint]",
+    "expectations": [
+      {
+        "text": "JointID",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "[JointOvrlp= 0: do nothing at joint]",
+        "scopeIncludes": "meta.brackets.options.openfast"
+      }
+    ]
+  },
+  {
+    "line": "ID   Attachment  X0     Y0    Z0     r0      p0     y0     Mass  CG*   I*      Volume   CdA*   Ca*",
+    "expectations": [
+      {
+        "text": "CG*",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "Ca*",
+        "scopeIncludes": "support.type.table-header.openfast"
+      }
+    ]
+  },
+  {
+    "line": "Predictions were generated on 24-Mar-2026 at 09:19:44 using OpenFAST, compiled on Mar 13 2026",
+    "expectations": [
+      {
+        "text": "24-Mar-2026",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": " linked with  NWTC Subroutine Library; ElastoDyn; MoorDyn (v2.3.8, 2025-02-27)",
+    "expectations": [
+      {
+        "text": "(v2.3.8, 2025-02-27)",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": "These predictions were generated by MoorDyn (v2.3.82025-02-27) on 24-Mar-2026 at 09:19:42.",
+    "expectations": [
+      {
+        "text": "24-Mar-2026",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "preamble": [
+      "! preamble",
+      "! preamble",
+      "\"unterminated.dat   EDFile   - missing closing quote"
+    ],
+    "line": "False    Echo    - Echo input data (flag)",
+    "expectations": [
+      {
+        "text": "False",
+        "scopeIncludes": "constant.language.boolean.openfast"
+      },
+      {
+        "text": "Echo",
+        "scopeIncludes": "variable.parameter.openfast"
+      }
+    ]
   }
 ]

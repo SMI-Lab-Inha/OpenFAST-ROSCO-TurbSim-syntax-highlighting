@@ -2,13 +2,17 @@
   "name": "openfast-rosco-syntax-highlighting",
   "displayName": "OpenFAST, ROSCO & TurbSim Syntax Highlighting",
   "description": "Syntax highlighting for OpenFAST, ROSCO, and TurbSim input and output files in Visual Studio Code.",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "publisher": "SMI-Lab",
   "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting.git"
   },
+  "bugs": {
+    "url": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting/issues"
+  },
+  "homepage": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting#readme",
   "license": "MIT",
   "icon": "media/icon.png",
   "engines": {

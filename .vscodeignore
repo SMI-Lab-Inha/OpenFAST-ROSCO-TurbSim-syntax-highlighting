@@ -6,3 +6,5 @@ scripts/**
 tests/**
 *.ps1
 *.log
+.gitignore
+*.vsix
