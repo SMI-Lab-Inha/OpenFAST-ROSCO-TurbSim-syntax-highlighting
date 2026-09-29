@@ -7,12 +7,12 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting.git"
+    "url": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting.git"
   },
   "bugs": {
-    "url": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting/issues"
+    "url": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting/issues"
   },
-  "homepage": "https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting#readme",
+  "homepage": "https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting#readme",
   "license": "MIT",
   "icon": "media/icon.png",
   "engines": {

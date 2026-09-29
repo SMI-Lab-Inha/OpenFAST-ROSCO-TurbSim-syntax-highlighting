@@ -30,7 +30,7 @@ Unofficial VS Code extension for OpenFAST, ROSCO, and TurbSim input and output f
 
 **From a `.vsix` file:**
 
-1. Download the `.vsix` file from the [Releases](https://github.com/SMI-Lab-Inha/openfast-rosco-syntax-highlighting/releases) page.
+1. Download the `.vsix` file from the [Releases](https://github.com/SMI-Lab-Inha/OpenFAST-ROSCO-TurbSim-syntax-highlighting/releases) page.
 2. Open VS Code and go to the Extensions view (`Ctrl+Shift+X`).
 3. Click the `...` menu at the top right and select **Install from VSIX...**.
 4. Select the downloaded file.
