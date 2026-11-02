@@ -394,5 +394,352 @@
         "scopeIncludes": "variable.parameter.openfast"
       }
     ]
+  },
+  {
+    "line": "--- Skew correction",
+    "expectations": [
+      {
+        "text": "--- Skew correction",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": "!------- SIMULATION CONTROL ---------------------------------------",
+    "expectations": [
+      {
+        "text": "SIMULATION CONTROL",
+        "scopeIncludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": "# Pitch angle vector, 36 entries - x axis (matrix columns) (deg)",
+    "expectations": [
+      {
+        "text": "36 entries",
+        "scopeIncludes": "comment.line.number-sign.openfast"
+      },
+      {
+        "text": "entries",
+        "scopeExcludes": "variable.parameter.openfast"
+      }
+    ]
+  },
+  {
+    "line": "\"13.750000 0.040000\"  InCDec1         - u-component coherence parameters for general or IEC models [-, m^-1]",
+    "expectations": [
+      {
+        "text": "13.750000 0.040000",
+        "scopeIncludes": "string.quoted.double.openfast"
+      },
+      {
+        "text": "13.750000 0.040000",
+        "scopeExcludes": "string.quoted.double.path.openfast"
+      },
+      {
+        "text": "[-, m^-1]",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      }
+    ]
+  },
+  {
+    "line": "150.0         HubHt           - Hub height [m] (should be > 0.5*GridHeight)",
+    "expectations": [
+      {
+        "text": "[m]",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      },
+      {
+        "text": "0.5",
+        "scopeExcludes": "constant.numeric.openfast"
+      }
+    ]
+  },
+  {
+    "line": "1.836784E+06   GenIner     - Generator inertia about HSS (kg m^2)",
+    "expectations": [
+      {
+        "text": "(kg m^2)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      }
+    ]
+  },
+  {
+    "line": "5                      PCMode      - Pitch control mode {0: none, 3: user-defined from routine PitchCntrl} (switch)",
+    "expectations": [
+      {
+        "text": "3",
+        "scopeIncludes": "constant.numeric.openfast"
+      },
+      {
+        "text": "user-defined from routine PitchCntrl",
+        "scopeIncludes": "constant.other.option.openfast"
+      },
+      {
+        "text": "(switch)",
+        "scopeIncludes": "storage.type.annotation.openfast"
+      }
+    ]
+  },
+  {
+    "line": "0.0                    TPCOn       - Time to enable active pitch control (s) [unused when PCMode=0]",
+    "expectations": [
+      {
+        "text": "(s)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      },
+      {
+        "text": "PCMode",
+        "scopeIncludes": "variable.parameter.reference.openfast"
+      },
+      {
+        "text": "=",
+        "scopeIncludes": "keyword.operator.comparison.openfast"
+      },
+      {
+        "text": "when",
+        "scopeExcludes": "constant.other.option.openfast"
+      }
+    ]
+  },
+  {
+    "line": "\"IECKAI\"      TurbModel       - Turbulence model (\"IECKAI\",\"IECVKM\", or \"NONE\")",
+    "expectations": [
+      {
+        "text": "\"IECVKM\"",
+        "scopeIncludes": "string.quoted.double.openfast"
+      },
+      {
+        "text": "\"NONE\"",
+        "scopeIncludes": "constant.language.special-value.quoted.openfast"
+      }
+    ]
+  },
+  {
+    "line": "0                   ! IPC_ControlMode - Turn Individual Pitch Control (IPC) for fatigue load reductions (pitch contribution) (0: off, 1: 1P reductions, 2: 1P+2P reductions)",
+    "expectations": [
+      {
+        "text": "IPC_ControlMode",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "1P reductions",
+        "scopeIncludes": "constant.other.option.openfast"
+      },
+      {
+        "text": "pitch contribution",
+        "scopeIncludes": "comment.line.description.openfast"
+      },
+      {
+        "text": "pitch contribution",
+        "scopeExcludes": "constant.other.option.openfast"
+      }
+    ]
+  },
+  {
+    "line": "0                   ! CC_Mode         - Cable control mode [0- unused, 1- User defined, 2- Open loop control]",
+    "expectations": [
+      {
+        "text": "User defined",
+        "scopeIncludes": "constant.other.option.openfast"
+      },
+      {
+        "text": "unused",
+        "scopeIncludes": "constant.other.option.openfast"
+      }
+    ]
+  },
+  {
+    "line": "1.000000                 eta_e       ! Recovery factor in the range [0.85 - 0.95] used only for UAMOD=1, it is set to 1 in the code when flookup=True. (-)",
+    "expectations": [
+      {
+        "text": "used only for",
+        "scopeIncludes": "comment.line.bang.openfast"
+      },
+      {
+        "text": "used only for",
+        "scopeExcludes": "comment.line.description.openfast"
+      },
+      {
+        "text": "(-)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      }
+    ]
+  },
+  {
+    "line": "DEFAULT                  InterpOrd   ! Interpolation order to use for quasi-steady table lookup {1=linear; 3=cubic spline; \"default\"} [default=3]",
+    "expectations": [
+      {
+        "text": "cubic spline",
+        "scopeIncludes": "constant.other.option.openfast"
+      },
+      {
+        "text": "cubic spline",
+        "scopeIncludes": "comment.line.bang.openfast"
+      }
+    ]
+  },
+  {
+    "line": "7    bend_stiff  R2A       R1B       6.000       2         -",
+    "expectations": [
+      {
+        "text": "bend_stiff",
+        "scopeIncludes": "string.unquoted.value.openfast"
+      },
+      {
+        "text": "R2A",
+        "scopeIncludes": "string.unquoted.value.openfast"
+      },
+      {
+        "text": "6.000",
+        "scopeIncludes": "constant.numeric.openfast"
+      },
+      {
+        "text": "         -",
+        "scopeIncludes": "constant.language.special-value.placeholder.openfast"
+      }
+    ]
+  },
+  {
+    "line": "(-)  (-)      (m)       (m)     (m)    (kg) (m^3) (m^2) (-)",
+    "expectations": [
+      {
+        "text": "(m^3)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      },
+      {
+        "text": "(m^3)",
+        "scopeIncludes": "meta.annotation.units.openfast"
+      },
+      {
+        "text": "(m^3)",
+        "scopeExcludes": "meta.table-row.openfast"
+      }
+    ]
+  },
+  {
+    "line": "0.0, 0.0, 0.0          NacCenB     - Position of nacelle center of buoyancy from yaw bearing in nacelle coordinates (m)",
+    "expectations": [
+      {
+        "text": ",",
+        "scopeIncludes": "punctuation.separator.sequence.openfast"
+      },
+      {
+        "text": "NacCenB",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "(m)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      }
+    ]
+  },
+  {
+    "line": "0.34207610930975174    TwFAM1Sh(3) -       , coefficient of x^3 term",
+    "expectations": [
+      {
+        "text": "TwFAM1Sh(3)",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "coefficient of x^3 term",
+        "scopeIncludes": "comment.line.description.openfast"
+      },
+      {
+        "text": "TwFAM1Sh(3)",
+        "scopeExcludes": "meta.table-row.openfast"
+      }
+    ]
+  },
+  {
+    "line": "MemberID  MJointID1  MJointID2  MCoefMod  PropPot   [MCoefMod=1: use simple coeff table, 2: use depth-based coeff table] [ PropPot/=0 if member is modeled with potential-flow theory]",
+    "expectations": [
+      {
+        "text": "MemberID",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "MemberID",
+        "scopeExcludes": "meta.table-row.openfast"
+      },
+      {
+        "text": "use depth-based coeff table",
+        "scopeIncludes": "constant.other.option.openfast"
+      },
+      {
+        "text": "/=",
+        "scopeIncludes": "keyword.operator.comparison.openfast"
+      },
+      {
+        "text": "if member is modeled",
+        "scopeIncludes": "comment.line.note.openfast"
+      }
+    ]
+  },
+  {
+    "preamble": [],
+    "line": "      Time         Node0px         Node0py         Node0pz         Node1px",
+    "expectations": [
+      {
+        "text": "Node0px",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "Node0px",
+        "scopeExcludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "preamble": [
+      " Generated on 24-Mar-2026 at 09:19:44 using ROSCO-2.10.4"
+    ],
+    "line": "                Time          WE_Cp                    WE_b                     WE_w",
+    "expectations": [
+      {
+        "text": "WE_Cp",
+        "scopeIncludes": "support.type.table-header.openfast"
+      },
+      {
+        "text": "WE_Cp",
+        "scopeExcludes": "markup.heading.openfast"
+      }
+    ]
+  },
+  {
+    "line": "               (sec)          [-]                      [m/s]                    [rad]",
+    "expectations": [
+      {
+        "text": "[m/s]",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      },
+      {
+        "text": "(sec)",
+        "scopeIncludes": "keyword.other.unit.openfast"
+      }
+    ]
+  },
+  {
+    "preamble": [
+      "! preamble",
+      "! preamble",
+      "False         Furling     - Read in additional model properties for furling turbine (flag) [must currently be FALSE)"
+    ],
+    "line": "\"unused\"      FurlFile    - Name of file containing furling properties (quoted string) [unused when Furling=False]",
+    "expectations": [
+      {
+        "text": "\"unused\"",
+        "scopeIncludes": "constant.language.special-value.quoted.openfast"
+      },
+      {
+        "text": "FurlFile",
+        "scopeIncludes": "variable.parameter.openfast"
+      },
+      {
+        "text": "FurlFile",
+        "scopeExcludes": "meta.brackets.options.openfast"
+      }
+    ]
   }
 ]

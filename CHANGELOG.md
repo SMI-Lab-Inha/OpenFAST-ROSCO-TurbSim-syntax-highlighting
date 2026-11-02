@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.0
+
+- Units in descriptions and comments, such as `(m)`, `(kg m^2)`, `(N-m/rad)`, `[rad/s]`, `[m^2/s^2]`, and `[-]`, get their own unit color; units rows (including ROSCO's `[m/s]` style) use the same color
+- Option lists are now read as key/label pairs: `{0=None; 1=SubDyn}`, `{1: RK4, 2: AB4}`, ROSCO's `(0: off, 1: 1P reductions)` and `[0- unused, 1- User defined]`, and DISCON's unbracketed `- 0: write no debug files, 1: ...`. The explanatory text in notes such as `[used only when VSContrl=0 and GenModel=2]` stays description-colored instead of every word being colored as an option
+- References to other inputs inside notes (`PCMode` in `[unused when PCMode=0]`, `NumBl < 3`, `PropPot/=0`) are highlighted as parameters, with the comparison operator picked out
+- Quoted choices inside descriptions (`("IECKAI","IECVKM", or "NONE")`, `(or "default")`) are highlighted as strings
+- ROSCO and airfoil section banners such as `!------- SIMULATION CONTROL -----` and `! ------` are headings, matching `----` banners elsewhere
+- AeroDyn sub-headings like `--- Skew correction` are headings
+- Words in data tables (MoorDyn line types, rod and point names such as `poly_181`, `R2A`, `pt`) are highlighted as values; a lone `-` placeholder is a constant
+- Commas in list values (`0.0, 0.0, 0.0`, `30.0, 60.0`) are separators
+- `#` comment lines (ROSCO `Cp_Ct_Cq` performance tables) are comments
+- Files that start with a column-header row (MoorDyn per-line `.out`, ROSCO `.RO.dbg`) no longer have that row painted as a title heading
+- Inline `!` comments: a spaced dash in the middle of the comment text (e.g. `[0.85 - 0.95]`) no longer turns the rest of the line into a description
+- A bracket closed with the wrong character (`[must currently be FALSE)`) no longer spills highlighting onto the next lines
+- Space-separated numbers in quotes (`"13.750000 0.040000"`) are no longer mistaken for file paths
+- Registered `.dvr` driver files, ROSCO debug output (`*.RO.dbg`, `*.RO.dbg2`, `*.RO.dbg3`), and `Cp_Ct_Cq*.txt` performance tables
+- The grammar test runner accepts `scopeExcludes` to assert that a scope is absent; added 22 regression cases
+
 ## 0.1.0
 
 - The first two lines of a file (banner + title line) are now both highlighted as headings; previously only the first line was, leaving numbers like `15` in `IEA 15 MW ...` picked out on line 2

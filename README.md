@@ -6,18 +6,21 @@ Unofficial VS Code extension for OpenFAST, ROSCO, and TurbSim input and output f
 
 ## Features
 
-- Syntax highlighting for OpenFAST-style text input files such as `.fst`, `.dat`, `.in`, `.inp`, `.out`, `.ipt`, `.ech`, `.wnd`, `.sum`, `.bmi`, and `.lin`
+- Syntax highlighting for OpenFAST-style text input files such as `.fst`, `.dat`, `.in`, `.inp`, `.out`, `.ipt`, `.ech`, `.wnd`, `.sum`, `.bmi`, `.lin`, and `.dvr`
 - Support for common OpenFAST module files including AeroDyn, ElastoDyn, HydroDyn, InflowWind, MoorDyn, ServoDyn, SeaState, and related driver files
-- Support for ROSCO-style `DISCON.in` controller files
+- Support for ROSCO-style `DISCON.in` controller files, ROSCO debug output (`*.RO.dbg`, `*.RO.dbg2`, `*.RO.dbg3`), and rotor performance tables (`Cp_Ct_Cq*.txt`)
 - Support for TurbSim input files (`.inp`, and `.in`)
 - Highlighting for:
-  - file title lines, section banners, and `END` markers
+  - file title lines, section banners (including `!----` banners in ROSCO and airfoil files), and `END` markers
   - booleans and special values like `default`, `unused`, and `none`
   - quoted strings, file paths, and unquoted string values like `FATAL` or `RK4`
-  - table column headers and units rows
+  - table column headers, units rows, and word cells in data tables (MoorDyn line types, attachments)
   - integers, decimals, and scientific notation
   - parameter names in the common `value  parameter  - description` layout
-  - `!` comments and trailing inline descriptions
+  - `!` and `#` comments and trailing inline descriptions
+  - units such as `(m)`, `(kg m^2)`, `[rad/s]`, and `[-]` inside descriptions
+  - option lists such as `{0=none; 1=standard}`, `(0: off, 1: on)`, and `[0- unused, 1- User defined]`, with the keys, labels, and quoted choices picked out
+  - references to other inputs in notes, e.g. `PCMode` in `[unused when PCMode=0]`
 
 ## Installation
 

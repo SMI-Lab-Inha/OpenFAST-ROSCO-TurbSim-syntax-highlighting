@@ -2,7 +2,7 @@
   "name": "openfast-rosco-syntax-highlighting",
   "displayName": "OpenFAST, ROSCO & TurbSim Syntax Highlighting",
   "description": "Syntax highlighting for OpenFAST, ROSCO, and TurbSim input and output files in Visual Studio Code.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "SMI-Lab",
   "private": true,
   "repository": {
@@ -65,7 +65,14 @@
           ".wnd",
           ".sum",
           ".bmi",
-          ".lin"
+          ".lin",
+          ".dvr"
+        ],
+        "filenamePatterns": [
+          "*.RO.dbg",
+          "*.RO.dbg2",
+          "*.RO.dbg3",
+          "Cp_Ct_Cq*.txt"
         ],
         "configuration": "./language-configuration.json"
       }

@@ -12,7 +12,8 @@
     "wnd",
     "sum",
     "bmi",
-    "lin"
+    "lin",
+    "dvr"
   ],
   "patterns": [
     {
@@ -22,13 +23,25 @@
       "include": "#output-header-line"
     },
     {
+      "include": "#comment-banners"
+    },
+    {
       "include": "#full-line-comments"
+    },
+    {
+      "include": "#hash-comments"
     },
     {
       "include": "#section-banners"
     },
     {
       "include": "#end-marker"
+    },
+    {
+      "include": "#units-rows"
+    },
+    {
+      "include": "#table-rows"
     },
     {
       "include": "#quoted-special-values"
@@ -58,16 +71,13 @@
       "include": "#table-headers"
     },
     {
-      "include": "#units-rows"
-    },
-    {
       "include": "#trailing-descriptions"
     },
     {
       "include": "#typed-annotations"
     },
     {
-      "include": "#available-options"
+      "include": "#notes"
     },
     {
       "include": "#bang-comments"
@@ -81,8 +91,8 @@
       "patterns": [
         {
           "name": "markup.heading.openfast",
-          "begin": "\\A.*\\n?",
-          "end": "^.*$"
+          "begin": "\\A(?![^\\S\\r\\n]*[A-Za-z][\\w()*/.\\-]*(?:(?:\\t|[^\\S\\r\\n]{2,})[A-Za-z][\\w()*/.\\-]*){3,}[^\\S\\r\\n]*$).*\\n?",
+          "end": "^(?=[^\\S\\r\\n]*[A-Za-z][\\w()*/.\\-]*(?:(?:\\t|[^\\S\\r\\n]{2,})[A-Za-z][\\w()*/.\\-]*){3,}[^\\S\\r\\n]*$)|^.*$"
         }
       ]
     },
@@ -102,6 +112,14 @@
         }
       ]
     },
+    "comment-banners": {
+      "patterns": [
+        {
+          "name": "markup.heading.openfast",
+          "match": "^\\s*!\\s*(?:[-=]{3,}|\\.{5,}).*$"
+        }
+      ]
+    },
     "full-line-comments": {
       "patterns": [
         {
@@ -110,11 +128,19 @@
         }
       ]
     },
+    "hash-comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.openfast",
+          "match": "^\\s*#.*$"
+        }
+      ]
+    },
     "section-banners": {
       "patterns": [
         {
           "name": "markup.heading.openfast",
-          "match": "^\\s*(?:[-=]{3,}.*[-=]{3,}|[-=]{3,})(?:\\s+\\[.*\\])?\\s*$"
+          "match": "^\\s*[-=]{3,}.*$"
         }
       ]
     },
@@ -133,11 +159,48 @@
         }
       ]
     },
+    "table-rows": {
+      "patterns": [
+        {
+          "name": "meta.table-row.openfast",
+          "begin": "^(?=\\s*\\S+(?:\\s+\\S+){2,}\\s*$)(?!\\s*(?:[-=]{3}|!|#|END\\b))(?!.*\\s[-\\x{2013}]\\s+[^\\s\\d.+\\-])(?!.*\\s!)(?!.*[\\[\\]{}()])(?=(?:.*?(?<![\\w.^])[-+]?(?:\\d+\\.?\\d*|\\.\\d+)(?:[eEdD][-+]?\\d+)?(?![\\w.])){2})",
+          "end": "$",
+          "patterns": [
+            {
+              "include": "#quoted-special-values"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#special-values"
+            },
+            {
+              "include": "#moordyn-keywords"
+            },
+            {
+              "include": "#numbers"
+            },
+            {
+              "name": "constant.language.special-value.placeholder.openfast",
+              "match": "(?<!\\S)-(?!\\S)"
+            },
+            {
+              "name": "string.unquoted.value.openfast",
+              "match": "(?<![\\w.+\\-])[A-Za-z_][\\w.+\\-#*]*"
+            },
+            {
+              "include": "#punctuation"
+            }
+          ]
+        }
+      ]
+    },
     "strings": {
       "patterns": [
         {
           "name": "string.quoted.double.path.openfast",
-          "begin": "@?\"(?=(?:[A-Za-z]:\\\\|\\.\\.?/|[^\"\\r\\n]*[\\\\/][^\"\\r\\n]*|[^\"\\r\\n]*\\.[A-Za-z0-9]{1,8}))",
+          "begin": "@?\"(?![-+\\d.eEdD\\s,]*\")(?=(?:[A-Za-z]:\\\\|\\.\\.?/|[^\"\\r\\n]*[\\\\/][^\"\\r\\n]*|[^\"\\r\\n]*\\.[A-Za-z0-9]{1,8}))",
           "beginCaptures": {
             "0": {
               "name": "punctuation.definition.string.begin.openfast"
@@ -184,6 +247,17 @@
         {
           "name": "constant.language.special-value.quoted.openfast",
           "match": "(?i)\"(?:default|unused|none|true|false)\""
+        }
+      ]
+    },
+    "inline-strings": {
+      "patterns": [
+        {
+          "include": "#quoted-special-values"
+        },
+        {
+          "name": "string.quoted.double.openfast",
+          "match": "\"[^\"\\r\\n]*\""
         }
       ]
     },
@@ -251,7 +325,22 @@
       "patterns": [
         {
           "name": "meta.annotation.units.openfast",
-          "match": "^\\s*(?:\\([^()\\r\\n]+\\)\\s*){2,}$"
+          "begin": "^(?=\\s*(?:(?:\\([^()\\r\\n]+\\)|\\[[^\\[\\]\\r\\n]+\\])\\s*){2,}$)",
+          "end": "$",
+          "patterns": [
+            {
+              "name": "keyword.other.unit.openfast",
+              "match": "\\([^()\\r\\n]+\\)|\\[[^\\[\\]\\r\\n]+\\]"
+            }
+          ]
+        }
+      ]
+    },
+    "units": {
+      "patterns": [
+        {
+          "name": "keyword.other.unit.openfast",
+          "match": "(?<![\\w)\\]])(?:\\(\\s*(?:1/)?(?:[kMG]?(?:N-m|Nm|N|W|J|Pa|Hz)|seconds?|sec\\.?|s|degrees?|deg|radians?|rad|rpm|meters?|mm|cm|km|m|kg|tonnes?|min|hrs?|ohms?|volts?|%|-)(?:\\^-?\\d+)?(?:(?:[/*\\-]|\\s|,\\s*)(?:1/)?(?:[kMG]?(?:N-m|Nm|N|W|J|Pa|Hz)|seconds?|sec\\.?|s|degrees?|deg|radians?|rad|rpm|meters?|mm|cm|km|m|kg|tonnes?|min|hrs?|ohms?|volts?|%|-)(?:\\^-?\\d+)?)*\\s*\\)|\\[\\s*(?:1/)?(?:[kMG]?(?:N-m|Nm|N|W|J|Pa|Hz)|seconds?|sec\\.?|s|degrees?|deg|radians?|rad|rpm|meters?|mm|cm|km|m|kg|tonnes?|min|hrs?|ohms?|volts?|%|-)(?:\\^-?\\d+)?(?:(?:[/*\\-]|\\s|,\\s*)(?:1/)?(?:[kMG]?(?:N-m|Nm|N|W|J|Pa|Hz)|seconds?|sec\\.?|s|degrees?|deg|radians?|rad|rpm|meters?|mm|cm|km|m|kg|tonnes?|min|hrs?|ohms?|volts?|%|-)(?:\\^-?\\d+)?)*\\s*\\])"
         }
       ]
     },
@@ -263,12 +352,28 @@
           "end": "$",
           "patterns": [
             {
-              "include": "#available-options"
-            },
-            {
-              "include": "#typed-annotations"
+              "include": "#description-content"
             }
           ]
+        }
+      ]
+    },
+    "description-content": {
+      "patterns": [
+        {
+          "include": "#typed-annotations"
+        },
+        {
+          "include": "#units"
+        },
+        {
+          "include": "#inline-strings"
+        },
+        {
+          "include": "#option-item"
+        },
+        {
+          "include": "#available-options"
         }
       ]
     },
@@ -276,7 +381,122 @@
       "patterns": [
         {
           "name": "storage.type.annotation.openfast",
-          "match": "(?i)\\((?:flag|switch|string|quoted string|quoted strings)\\)"
+          "match": "(?i)[(\\[](?:flag|switch|string|quoted strings?|integer|real|logical|array)[)\\]]"
+        }
+      ]
+    },
+    "option-item": {
+      "comment": "A key/label pair in an option list: `0=none`, `1: RK4`, `2- WSE TSR Tracking`, `T: timed`. The label must contain a letter so ranges like `0 - 9` are left alone.",
+      "patterns": [
+        {
+          "match": "(?<=[{\\[(,;=]|[-\\x{2013}]\\s)\\s*([-+]?\\d+(?:\\.\\d+)?(?:[A-Za-z]#?)?|(?i:true|false|default)|[TF])\\s*(:|=|-(?![\\d.]))\\s*(?=[^,;{}\\[\\]()\\r\\n]*[A-Za-z])([^,;{}\\[\\]()\\r\\n]*[^,;{}\\[\\]()\\s])",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#special-values"
+                },
+                {
+                  "include": "#numbers"
+                },
+                {
+                  "name": "constant.other.option.key.openfast",
+                  "match": ".+"
+                }
+              ]
+            },
+            "2": {
+              "name": "punctuation.separator.key-value.openfast"
+            },
+            "3": {
+              "name": "constant.other.option.openfast"
+            }
+          }
+        }
+      ]
+    },
+    "option-condition": {
+      "comment": "A reference to another input inside a note, e.g. `PCMode=0`, `NumBl < 3`, `UAMod<>1`. The name must contain an uppercase letter so prose like `be <= 99` is not matched.",
+      "patterns": [
+        {
+          "match": "(?<![\\w.])((?=[A-Za-z0-9_]*[A-Z])[A-Za-z][A-Za-z0-9_]*(?:\\([^)]*\\))?)\\s*(==|/=|>=|<=|<>|=|>|<)",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.reference.openfast"
+            },
+            "2": {
+              "name": "keyword.operator.comparison.openfast"
+            }
+          }
+        }
+      ]
+    },
+    "option-content": {
+      "patterns": [
+        {
+          "include": "#inline-strings"
+        },
+        {
+          "include": "#typed-annotations"
+        },
+        {
+          "include": "#units"
+        },
+        {
+          "include": "#option-item"
+        },
+        {
+          "include": "#option-condition"
+        },
+        {
+          "include": "#special-values"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#available-options"
+        },
+        {
+          "include": "#option-operators"
+        }
+      ]
+    },
+    "paren-content": {
+      "comment": "Parentheses in descriptions are mostly prose, so only structured pieces are picked out; bare numbers are left as description text.",
+      "patterns": [
+        {
+          "include": "#inline-strings"
+        },
+        {
+          "include": "#typed-annotations"
+        },
+        {
+          "include": "#units"
+        },
+        {
+          "include": "#option-item"
+        },
+        {
+          "include": "#option-condition"
+        },
+        {
+          "include": "#available-options"
+        },
+        {
+          "include": "#option-operators"
+        }
+      ]
+    },
+    "option-operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.openfast",
+          "match": "==|/=|>=|<=|<>|=|>|<"
+        },
+        {
+          "name": "punctuation.separator.sequence.openfast",
+          "match": "[;,:]"
         }
       ]
     },
@@ -290,7 +510,7 @@
               "name": "punctuation.section.braces.begin.openfast"
             }
           },
-          "end": "\\}",
+          "end": "\\}|$",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.braces.end.openfast"
@@ -298,18 +518,7 @@
           },
           "patterns": [
             {
-              "include": "#special-values"
-            },
-            {
-              "include": "#numbers"
-            },
-            {
-              "name": "constant.other.option.openfast",
-              "match": "[A-Za-z_][A-Za-z0-9_+./-]*"
-            },
-            {
-              "name": "punctuation.separator.sequence.openfast",
-              "match": "[=;,:]"
+              "include": "#option-content"
             }
           ]
         },
@@ -321,7 +530,7 @@
               "name": "punctuation.section.brackets.begin.openfast"
             }
           },
-          "end": "\\]",
+          "end": "\\]|$",
           "endCaptures": {
             "0": {
               "name": "punctuation.section.brackets.end.openfast"
@@ -329,18 +538,42 @@
           },
           "patterns": [
             {
-              "include": "#special-values"
-            },
+              "include": "#option-content"
+            }
+          ]
+        },
+        {
+          "name": "meta.parens.options.openfast",
+          "begin": "\\(",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.parens.begin.openfast"
+            }
+          },
+          "end": "\\)|$",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.parens.end.openfast"
+            }
+          },
+          "patterns": [
             {
-              "include": "#numbers"
-            },
+              "include": "#paren-content"
+            }
+          ]
+        }
+      ]
+    },
+    "notes": {
+      "comment": "A [...] or {...} group outside a description (after a table header, for example). Its prose reads as a comment while option keys and references keep their colors.",
+      "patterns": [
+        {
+          "name": "comment.line.note.openfast",
+          "begin": "(?=[\\[{])",
+          "end": "(?<=[\\]}])|$",
+          "patterns": [
             {
-              "name": "constant.other.option.openfast",
-              "match": "[A-Za-z_][A-Za-z0-9_+./-]*"
-            },
-            {
-              "name": "punctuation.separator.sequence.openfast",
-              "match": "[=;,:]"
+              "include": "#available-options"
             }
           ]
         }
@@ -358,14 +591,25 @@
           "end": "$",
           "patterns": [
             {
-              "include": "#parameter-names"
+              "match": "\\G\\s*([A-Za-z][A-Za-z0-9_]*(?:\\([^)]+\\))?)(?=\\s+[-\\x{2013}]\\s)",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.openfast"
+                }
+              }
             },
             {
               "include": "#trailing-descriptions"
             },
             {
               "name": "comment.line.bang.openfast",
-              "match": "\\S+"
+              "begin": "(?=\\S)",
+              "end": "$",
+              "patterns": [
+                {
+                  "include": "#description-content"
+                }
+              ]
             }
           ]
         }
@@ -384,6 +628,10 @@
         {
           "name": "punctuation.section.parens.openfast",
           "match": "[()]"
+        },
+        {
+          "name": "punctuation.separator.sequence.openfast",
+          "match": "[,;]"
         }
       ]
     },

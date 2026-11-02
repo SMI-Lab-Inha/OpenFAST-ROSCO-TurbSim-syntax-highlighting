@@ -85,7 +85,7 @@ async function main() {
     const { tokens } = tokenizeCase(grammar, line, preamble);
 
     for (const expectation of expectations) {
-      const { text, scopeIncludes } = expectation;
+      const { text, scopeIncludes, scopeExcludes } = expectation;
       const startIndex = line.indexOf(text);
 
       if (startIndex === -1) {
@@ -99,6 +99,30 @@ async function main() {
       if (matchingTokens.length === 0) {
         failures += 1;
         console.error(`No token found for "${text}" in line: ${line}`);
+        continue;
+      }
+
+      // scopeExcludes: no token covering the text may carry this scope.
+      if (scopeExcludes) {
+        const offending = matchingTokens.filter((token) =>
+          token.scopes.includes(scopeExcludes)
+        );
+
+        if (offending.length > 0) {
+          failures += 1;
+          console.error(
+            [
+              `Expected "${text}" not to include scope "${scopeExcludes}"`,
+              `Line: ${line}`,
+              `Actual scopes: ${offending
+                .map((token) => formatScopes(token.scopes))
+                .join(" | ")}`
+            ].join("\n")
+          );
+        }
+      }
+
+      if (!scopeIncludes) {
         continue;
       }
 
